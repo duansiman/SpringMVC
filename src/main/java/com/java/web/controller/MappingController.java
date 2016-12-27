@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * RequestMapping注解属性
  * Created by devin on 2016/12/21.
  */
 @Controller

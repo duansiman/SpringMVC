@@ -1,5 +1,7 @@
 package com.java.web.beans;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 /**
  * Created by devin on 2016/12/21.
  */
@@ -28,6 +30,7 @@ public class User {
                 '}';
     }
 
+    @JsonView(UserView.class)
     public String getId() {
         return id;
     }
@@ -36,6 +39,7 @@ public class User {
         this.id = id;
     }
 
+    @JsonView(UserView.class)
     public String getName() {
         return name;
     }
@@ -44,11 +48,16 @@ public class User {
         this.name = name;
     }
 
+    @JsonView(UserView.class)
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public interface UserView{
+
     }
 }
