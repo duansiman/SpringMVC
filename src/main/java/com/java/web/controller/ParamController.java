@@ -48,24 +48,4 @@ public class ParamController {
         }
         return "redAndWriter";
     }
-
-//    @RequestMapping(value = "/getUserById/{date}")
-//    @ResponseBody
-    public String getUserById(@PathVariable("date") Date date){
-        return date.toString();
-    }
-
-    @RequestMapping(value = "/getUserById/{id}")
-    @ResponseBody
-    public String getUserById(@PathVariable("id") User user){// TODO: 2016/12/21 这样不行
-        return user.toString();
-    }
-
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder){
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyyMMdd"), false));
-        binder.registerCustomEditor(User.class, new UserEditor());
-
-    }
 }

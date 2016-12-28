@@ -20,7 +20,7 @@ public class ViewController {
 
     @RequestMapping(value = "/getUser")
     public String getUser(){
-        return "user.jsp";
+        return "user";
     }
 
 }
