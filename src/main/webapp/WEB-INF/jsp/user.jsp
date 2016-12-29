@@ -16,5 +16,6 @@
 <p>${user.id}</p>
 <p>${user.name}</p>
 <p>${user.age}</p>
+
 </body>
 </html>

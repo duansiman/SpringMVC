@@ -11,18 +11,14 @@ import java.beans.PropertyEditorSupport;
 public class UserEditor extends PropertyEditorSupport {
 
     @Override
-    public void setValue(Object value) {
-        if (value != null) {
-            User user = new User(value.toString(), "掌上", 23);
-            super.setValue(user);
-        }
+    public String getAsText() {
+        User user = (User) getValue();
+        return user.getId();
     }
 
     @Override
-    public String getAsText() {
-        Object value = getValue();
-        if (value!=null && value instanceof User)
-            return ((User) value).getId();
-        return getAsText();
+    public void setAsText(String text) throws IllegalArgumentException {
+        User user = new User(text, "掌上", 23);
+        setValue(user);
     }
 }

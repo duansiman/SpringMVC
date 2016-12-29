@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * @InitBinder 使用
  * Created by devin on 2016/12/28.
  */
 @Controller
@@ -26,16 +28,14 @@ public class DataBindingController {
         return date.toString();
     }
 
-    @RequestMapping(value = "/user/{id}")
+    @RequestMapping(value = "/user/{id}", produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String getUserById(@PathVariable("id") User user){// TODO: 2016/12/21 这样不行
+    public String getUserById(@PathVariable("id") User user){
         return user.toString();
     }
 
-
     @InitBinder
     public void initBinder(WebDataBinder binder){
-        System.out.println(binder.getTarget());
         binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("yyyyMMdd"), false));
         binder.registerCustomEditor(User.class, new UserEditor());
     }
