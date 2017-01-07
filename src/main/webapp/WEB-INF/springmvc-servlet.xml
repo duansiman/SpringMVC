@@ -12,7 +12,24 @@
 
     <context:component-scan base-package="com.java.web"/>
 
-    <mvc:annotation-driven enable-matrix-variables="true"/>
+    <!--<mvc:annotation-driven enable-matrix-variables="true">
+        &lt;!&ndash;<mvc:async-support default-timeout="10000">
+            <mvc:callable-interceptors>
+                <bean class="com.java.web.controller.async.CallableInterceptor"/>
+            </mvc:callable-interceptors>
+            <mvc:deferred-result-interceptors>
+                <bean class="com.java.web.controller.async.DeferredInterceptor"/>
+            </mvc:deferred-result-interceptors>
+        </mvc:async-support>&ndash;&gt;
+    </mvc:annotation-driven>-->
+
+    <!--<mvc:interceptors>
+        &lt;!&ndash;这里配置是HandlerInterceptor实现类&ndash;&gt;
+        <mvc:interceptor>
+            <mvc:mapping path="/async/**"/>
+            <bean class="com.java.web.controller.async.AsyncInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>-->
 
     <!--视图对应关系配置-->
     <!--<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -86,4 +103,17 @@
         <property name="url" value="/WEB-INF/jsp/user.jsp"/>
     </bean>
 
+
+    <!--使用RequestMappingHandlerMapping配置拦截器，需要去掉mvc:annotation-driven标签，再添加一个RequestMappingHandlerAdapter-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="helloInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="helloInterceptor" class="com.java.web.interceptors.HelloInterceptor"/>
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver"/>
 </beans>

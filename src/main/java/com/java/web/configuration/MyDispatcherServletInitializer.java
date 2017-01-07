@@ -10,7 +10,7 @@ import org.springframework.web.servlet.support.AbstractDispatcherServletInitiali
 /**
  * Created by devin on 2016/12/20.
  */
-public class MyDispatcherServletInitializer extends AbstractDispatcherServletInitializer {
+public class MyDispatcherServletInitializer/* extends AbstractDispatcherServletInitializer*/ {
 
     protected WebApplicationContext createServletApplicationContext() {
         XmlWebApplicationContext cxt = new XmlWebApplicationContext();
